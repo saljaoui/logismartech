@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* LogiSmartech — Deep maritime + amber */
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 40% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 40% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 95% 58%;            /* electric maritime blue */
+    --primary-foreground: 222 47% 4%;
+    --primary-glow: 199 100% 70%;
+
+    --accent: 38 95% 58%;              /* amber */
+    --accent-foreground: 222 47% 4%;
+    --accent-glow: 38 100% 68%;
+
+    --secondary: 217 33% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 11%;
+    --muted-foreground: 215 20% 65%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 15%;
+    --input: 217 33% 15%;
+    --ring: 199 95% 58%;
+
+    --radius: 0.9rem;
+
+    /* Gradients */
+    --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(199 95% 35% / 0.35), transparent 70%),
+                     radial-gradient(ellipse 60% 50% at 80% 30%, hsl(38 95% 50% / 0.18), transparent 70%),
+                     radial-gradient(ellipse 60% 50% at 10% 60%, hsl(199 95% 45% / 0.18), transparent 70%);
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-amber: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-card: linear-gradient(180deg, hsl(217 33% 10% / 0.6), hsl(222 40% 6% / 0.4));
+    --gradient-text: linear-gradient(180deg, hsl(210 40% 98%), hsl(210 40% 70%));
+
+    /* Shadows / glows */
+    --shadow-glow: 0 0 60px -10px hsl(199 95% 58% / 0.45);
+    --shadow-amber: 0 0 60px -10px hsl(38 95% 58% / 0.45);
+    --shadow-card: 0 1px 0 0 hsl(210 40% 98% / 0.05) inset, 0 30px 60px -30px hsl(222 47% 0% / 0.8);
+  }
+
+  .dark { color-scheme: dark; }
+
+  * { @apply border-border; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+    background-image:
+      radial-gradient(1px 1px at 25% 30%, hsl(210 40% 98% / 0.06) 1px, transparent 0),
+      radial-gradient(1px 1px at 75% 70%, hsl(210 40% 98% / 0.05) 1px, transparent 0);
+    background-size: 120px 120px, 200px 200px;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply rounded-[var(--radius)] border border-white/[0.08] bg-[var(--gradient-card)] backdrop-blur-xl;
+    box-shadow: var(--shadow-card);
+  }
+  .glass-hover {
+    @apply transition-all duration-500 hover:border-white/[0.14] hover:-translate-y-0.5;
+  }
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary-glow)), hsl(var(--accent-glow)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .ring-glow {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.4), 0 0 40px hsl(var(--primary) / 0.35);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, hsl(210 40% 98% / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(210 40% 98% / 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 75%);
+  }
+}
+
+@layer utilities {
+  .tracking-tightest { letter-spacing: -0.04em; }
+}
