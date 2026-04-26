@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import webhookRoutes from "./routes/webhookRoutes.js";
 import containerRoutes from "./routes/containerRoutes.js";
+import cooperativeRoutes from "./routes/cooperativeRoutes.js";
 import matchRoutes from "./routes/matchRoutes.js";
 
 const app = express();
@@ -24,6 +25,7 @@ app.get("/health", (_req, res) => {
 
 app.use("/api", webhookRoutes);
 app.use("/api", containerRoutes);
+app.use("/api", cooperativeRoutes);
 app.use("/api", matchRoutes);
 
 app.use((req, res) => {
