@@ -1,8 +1,28 @@
 import OpenAI from "openai";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+function createLlmClient() {
+  if (process.env.GEMINI_API_KEY) {
+    return new OpenAI({
+      apiKey: process.env.GEMINI_API_KEY,
+      baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
+    });
+  }
+
+  if (process.env.OPENAI_API_KEY) {
+    return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  }
+
+  return null;
+}
+
+const openai = createLlmClient();
+
+function resolveLlmModel() {
+  if (process.env.GEMINI_API_KEY) {
+    return process.env.GEMINI_MODEL || "gemini-1.5-flash";
+  }
+  return process.env.OPENAI_MODEL || "gpt-4o-mini";
+}
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -123,7 +143,7 @@ async function extractWithLlm(text) {
     return null;
   }
 
-  const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const model = resolveLlmModel();
 
   const systemPrompt = [
     "You are an extraction engine for logistics onboarding.",

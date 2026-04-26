@@ -72,14 +72,14 @@ interface ApiErrorBody {
 }
 
 function resolveApiBaseUrl() {
-  const viteUrl = typeof import.meta !== "undefined" ? import.meta.env?.GEMINI_API_KEY : undefined;
+  const viteUrl = typeof import.meta !== "undefined" ? import.meta.env?.VITE_API_BASE_URL : undefined;
   const nextUrl =
     typeof globalThis !== "undefined"
       ? (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env
           ?.NEXT_PUBLIC_API_BASE_URL
       : undefined;
 
-  const baseUrl = viteUrl || nextUrl || "http://localhost:3000";
+  const baseUrl = viteUrl || nextUrl || "http://localhost:4000";
   return baseUrl.replace(/\/+$/, "");
 }
 
