@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Cooperative {
+  id              Int      @id @default(autoincrement())
+  name            String
+  productType     String
+  availableWeight Float
+  availableVolume Float
+  phone           String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Container {
+  id               Int      @id @default(autoincrement())
+  containerNumber  String   @unique
+  destinationPort  String
+  maxWeight        Float
+  maxVolume        Float
+  probabilityEmpty Float
+  status           String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([status])
+  @@index([destinationPort])
+}
