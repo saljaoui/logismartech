@@ -1,4 +1,4 @@
-import { Anchor, Github, Twitter } from "lucide-react";
+// import { Anchor, Github, Twitter } from "lucide-react";
 
 export const Navbar = () => (
   <header className="fixed top-0 inset-x-0 z-50">
@@ -6,8 +6,8 @@ export const Navbar = () => (
       <div className="glass flex items-center justify-between px-5 py-3">
         <a href="#" className="flex items-center gap-2.5">
           <div className="relative">
-            <div className="size-8 rounded-lg bg-gradient-primary grid place-items-center shadow-glow">
-              <Anchor className="size-4 text-primary-foreground" strokeWidth={2.5} />
+            <div className="size-8 rounded-lg grid place-items-center shadow-glow">
+              <img src="/logo_project.png" alt="" />
             </div>
           </div>
           <span className="font-semibold tracking-tight text-[15px]">
